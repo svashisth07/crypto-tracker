@@ -1,25 +1,25 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { SupportedCurrency } from "@/types";
+import { Cryptocurrency, SupportedCurrency } from "@/types";
 
-interface AppState {
+interface CryptoTrackerState {
   selectedCurrency: SupportedCurrency;
-  recentSearches: string[];
+  recentSearches: Cryptocurrency[];
   setSelectedCurrency: (currency: SupportedCurrency) => void;
-  addRecentSearch: (cryptoId: string) => void;
+  addRecentSearch: (coin: Cryptocurrency) => void;
 }
 
-export const useStore = create<AppState>()(
+export const useCryptoTrackerStore = create<CryptoTrackerState>()(
   persist(
     (set) => ({
       selectedCurrency: "usd",
       recentSearches: [],
       setSelectedCurrency: (currency) => set({ selectedCurrency: currency }),
-      addRecentSearch: (cryptoId) =>
+      addRecentSearch: (coin) =>
         set((state) => ({
           recentSearches: [
-            cryptoId,
-            ...state.recentSearches.filter((id) => id !== cryptoId),
+            coin,
+            ...state.recentSearches.filter((c) => c.id !== coin.id),
           ].slice(0, 10),
         })),
     }),

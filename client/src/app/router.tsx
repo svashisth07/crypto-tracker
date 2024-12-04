@@ -11,7 +11,7 @@ export const createAppRouter = () =>
     {
       path: paths.home.path,
       lazy: async () => {
-        const { CryptoTrackerRoute } = await import("./routes/crypto-tracker");
+        const { CryptoTrackerRoute } = await import("@/features/crypto-tracker/routes");
         return { Component: CryptoTrackerRoute };
       },
     },

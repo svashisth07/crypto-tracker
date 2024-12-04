@@ -3,7 +3,6 @@ import Axios, { InternalAxiosRequestConfig } from 'axios';
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   if (config.headers) {
     config.headers.Accept = 'application/json';
-    config.headers['x-cg-demo-api-key'] = import.meta.env.VITE_GECKO_API_KEY;
   }
 
   config.withCredentials = true;
@@ -11,7 +10,7 @@ function authRequestInterceptor(config: InternalAxiosRequestConfig) {
 }
 
 export const api = Axios.create({
-  baseURL: 'https://api.coingecko.com/api/v3',
+  baseURL: 'http://localhost:4000/api',
 });
 
 api.interceptors.request.use(authRequestInterceptor);

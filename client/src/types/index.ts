@@ -7,6 +7,9 @@ export interface Cryptocurrency {
     market_cap_rank: number;
     image: string;
     price_change_percentage_24h: number;
+    total_volume: number;
+    high_24h: number;
+    low_24h: number;
   }
 
 export type SupportedCurrency = "usd" | "eur" | "gbp" | "chf" | "inr";

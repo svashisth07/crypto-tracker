@@ -9,7 +9,7 @@ interface Config {
 }
 
 const config: Config = {
-  port: parseInt(process.env.PORT || '3000', 10),
+  port: parseInt(process.env.PORT || '4000', 10),
   coingeckoApiUrl: 'https://api.coingecko.com/api/v3',
   cacheTTL: 300
 };
