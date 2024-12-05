@@ -46,10 +46,10 @@ The server side is developed using Express.js and serves as a backend API that i
 
 ### Running Frontend & backend application
 
-    ```bash
-    cd client && npm run dev
+   ```bash
+   cd client && npm run dev
     ```
 
-    ```bash
-    cd server && npm run dev
+   ```bash
+   cd server && npm run dev
     ```
