@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { fetchCoinsMarkets } from '../services/coins-service';
 import { setCache } from '../middlewares/cache-middleware';
+import { logger } from '../utils/logger';
 
 export const getCoinsMarkets = async (req: Request, res: Response) => {
   try {
@@ -13,6 +14,7 @@ export const getCoinsMarkets = async (req: Request, res: Response) => {
       page: parseInt(page as string, 10),
       searchText: searchText as string,
     });
+    logger('Serving from coin gecko server', { cacheKey });
 
     // Cache the data
     setCache(cacheKey, data);

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import NodeCache from 'node-cache';
+import { logger } from '../utils/logger';
 
 const cache = new NodeCache({ stdTTL: 300 }); // Cache for 5 minutes
 
@@ -8,7 +9,7 @@ export const cacheMiddleware = (req: Request, res: Response, next: NextFunction)
   const cachedData = cache.get(cacheKey) as any[];
 
   if (cachedData) {
-    console.log('Serving from cache');
+    logger('Serving from cache', { cacheKey });
     res.write('[');
     cachedData?.forEach((crypto: any, index: number) => {
       res.write(JSON.stringify(crypto) + (index < cachedData.length - 1 ? ',' : ''));
